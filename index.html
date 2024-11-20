@@ -117,8 +117,8 @@
     font-family: 'Roboto Mono', monospace;
     line-height: 1.4em;
     color: #dcdcdc;
-    text-align: left; /* Align text to the left */
-    padding-left: 15px; /* Add padding for better spacing */
+    text-align: left; 
+    padding-left: 15px; 
 }
 
 #members img {
@@ -210,14 +210,14 @@
             }
         }
 
-        /* Hide hamburger icon on larger screens */
+     
         @media (min-width: 601px) {
             .hamburger {
                 display: none;
             }
         }
 
-        /* Responsive for tablets and small screens */
+      
         @media (min-width: 601px) and (max-width: 1024px) {
             #logo {
                 font-size: 2.5em;
@@ -240,7 +240,25 @@
                 margin: 8px 10px;
             }
         }
+        body {
+    scrollbar-width: thin; 
+    scrollbar-color: rgb(0, 0, 0) rgb(0, 0, 0); 
+}
 
+
+body::-webkit-scrollbar {
+    width: 8px; 
+}
+
+body::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0); 
+}
+
+        body::-webkit-scrollbar-thumb {
+            background-color: rgb(0, 0, 0); 
+            border-radius: 10px; 
+            border: 2px solid black; 
+        }
     </style>
 </head>
 
@@ -256,9 +274,9 @@
 
     <div id="container">
         <div class="nav-buttons">
-            <span class="hamburger" onclick="toggleMenu()">&#9776;</span> <!-- Hamburger icon -->
+            <span class="hamburger" onclick="toggleMenu()">&#9776;</span> 
             <div id="menu-items" class="nav-links">
-                <span class="nav-button" onclick="showHome()">Home</span> <!-- Updated to call showHome() -->
+                <span class="nav-button" onclick="showHome()">Home</span> 
                 <span class="nav-button" onclick="showPage('members')">Members</span>
                 <span class="nav-button" onclick="showPage('about')">About</span>
                 <span class="nav-button" onclick="showPage('CTFs')">CTFs</span>
@@ -332,7 +350,7 @@ function showMainPage() {
 }
 
 
-        // Function to show any page
+        
         function showPage(pageId) {
             var pages = document.querySelectorAll('.page');
             pages.forEach(function(page) {
@@ -340,13 +358,13 @@ function showMainPage() {
             });
             document.getElementById(pageId).classList.add('visible');
 
-            // Close the menu only on mobile devices
+        
             if (window.innerWidth <= 600) {
                 toggleMenu(); 
             }
         }
 
-        // Function to toggle the mobile menu
+  
         function toggleMenu() {
             const menu = document.getElementById('menu-items');
             menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; 
@@ -357,7 +375,7 @@ function showMainPage() {
             document.getElementById('intro').style.display = 'flex';
             document.getElementById('container').style.display = 'none';
 
-            // Close the menu only on mobile devices
+    
             if (window.innerWidth <= 600) {
                 toggleMenu(); 
             }
