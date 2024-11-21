@@ -46,7 +46,7 @@
             width: 100%;
             height: 100vh;
             overflow-y: auto;
-            padding-top: 60px;
+            padding-top: 80px;
         }
 
         #logo {
@@ -85,11 +85,14 @@
 
         .page {
             display: none;
-            margin-top: 20px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .visible {
-            display: block;
+            display: block !important;
         }
 
         .nav-buttons {
@@ -99,10 +102,16 @@
             background-color: #000000;
             padding: 10px 0;
             position: fixed;
-            top: 0px;
+            top: 0;
             z-index: 1000;
             border-bottom: 5px solid #000000;
             border-top: 15px solid #000000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .nav-button {
@@ -110,21 +119,121 @@
             color: rgb(255, 255, 255);
             text-decoration: none;
             margin: 0 15px;
+            padding: 8px 15px;
         }
 
-        #members td {
-    font-size: 0.8em;
-    font-family: 'Roboto Mono', monospace;
-    line-height: 1.4em;
-    color: #dcdcdc;
-    text-align: left; 
-    padding-left: 15px; 
-}
+        .nav-button:hover {
+            color: #888;
+        }
 
-#members img {
-    margin-right: 10px;
-    vertical-align: middle; 
-}
+        #members {
+            padding: 20px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .member {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            min-height: 150px;
+        }
+
+        .member img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .member-info {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8em;
+            line-height: 1.8;
+            color: #dcdcdc;
+            text-align: left;
+            flex: 1;
+            padding: 5px 0;
+        }
+
+        .member-info strong {
+            font-size: 1.1em;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .member-info a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .member-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 800px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 10px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .member {
+                min-height: 100px;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 30px;
+                border-bottom: 2px solid #333;
+            }
+
+            .member:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .member img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .member-info {
+                font-size: 0.7em;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .members-grid {
+                max-width: 300px;
+            }
+            
+            .member {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .member-info {
+                text-align: center;
+            }
+        }
 
         .page p {
             text-align: center;
@@ -180,44 +289,63 @@
                 height: 100px;
             }
 
-            .hamburger {
-                display: block;
-                position: absolute;
-                top: 10px;
-                left: 10px;
-            }
-
             .nav-links {
-                display: none; 
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 60px;
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background-color: black;
-                text-align: center;
+                padding: 10px 0;
+                border-bottom: 2px solid #222;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 1.5em;
+                padding: 5px 15px;
             }
 
             .nav-button {
                 padding: 10px 0;
-                margin: 0;
-                font-size: 1.2em;
-                display: block;
+                width: 100%;
             }
 
-            .nav-button:hover {
-                background-color: #222;
+            #container {
+                padding-top: 100px;
+            }
+
+            .nav-buttons {
+                height: 50px;
+            }
+
+            .nav-links.show {
+                display: flex;
+                top: 50px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.show + #container {
+                margin-top: 200px;
             }
         }
 
-     
         @media (min-width: 601px) {
             .hamburger {
                 display: none;
             }
+
+            .nav-links {
+                display: flex !important;
+            }
         }
 
-      
         @media (min-width: 601px) and (max-width: 1024px) {
             #logo {
                 font-size: 2.5em;
@@ -259,6 +387,134 @@ body::-webkit-scrollbar-track {
             border-radius: 10px; 
             border: 2px solid black; 
         }
+
+        #members {
+            padding-bottom: 100px;
+        }
+
+        #members table {
+            margin-bottom: 100px;
+        }
+
+        #members h2 {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        #members table {
+            max-width: 1000px;
+            margin: 0 auto 100px auto;
+        }
+
+        #members tr {
+            background: rgba(30, 30, 30, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        #members tr:hover {
+            transform: translateX(5px);
+            background: rgba(40, 40, 40, 0.3);
+        }
+
+        #about {
+            text-align: justify;
+            padding: 40px 20px;
+            line-height: 1.8em;
+        }
+
+        #about p {
+            margin-bottom: 25px;
+        }
+
+        #CTFs, #projects {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 0 15px;
+                margin-top: 20px;
+            }
+            
+            .page h2 {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+            }
+            
+            #about {
+                font-size: 0.8em;
+                padding: 20px 15px;
+            }
+            
+            #members td {
+                padding: 10px;
+            }
+        }
+
+        #intro {
+            padding: 20px;
+        }
+
+        #intro img {
+            margin-bottom: 30px;
+        }
+
+        #intro p {
+            margin: 30px 0;
+            line-height: 1.8em;
+            letter-spacing: 2px;
+        }
+
+        #intro h6 {
+            margin-top: 30px;
+            letter-spacing: 2px;
+        }
+
+        #logo {
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            #intro p {
+                font-size: 0.8em;
+                margin: 40px 0;
+                line-height: 2em;
+                letter-spacing: 3px;
+            }
+            
+            #intro h6 {
+                margin-top: 40px;
+                font-size: 0.8em;
+            }
+            
+            #logo {
+                margin-bottom: 40px;
+            }
+        }
+
+        #CTFs p, #projects p {
+            line-height: 1.8em;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        .page h2 {
+            margin: 40px 0;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        #about {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #about p {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
     </style>
 </head>
 
@@ -291,51 +547,92 @@ body::-webkit-scrollbar-track {
 
             <div id="members" class="page">
            <br/> <h2>Members</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><img src="https://avatars.githubusercontent.com/u/124378926?v=4" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>XDU0</strong> (co-founder)<br />ISET CHARGUIA<br />- DFIR hardware<br />- Github: <a href="http://github.com/Hilmi-z">XDU0</a><br /> - Blog: <a href="https://hilmi-z.github.io/">XDU0.me</a></td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://i.pinimg.com/originals/e2/3c/67/e23c67c1c2858dfaebe0a6383fd1d699.gif" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>Blade</strong> (co-founder)<br />ISET CHARGUIA<br />- DFIR OSINT hardware<br /> - Blog: <a href="https://hatem.h4ck.me/">hatem.h4ck.me</a><br />- Github: <a href="https://github.com/unholy-blade">unholy-blade</a></td>
-                    </tr>
-
-                    <tr>
-                        <td><img src="https://avatars.githubusercontent.com/u/69780128?v=4" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>square</strong> (member)<br />fac?<br />- web rev <br /> - Blog: <a href="https://squar3.site/">squar3.site</a><br />- Github: <a href="https://github.com/FatSquare">FatSquare</a></td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://media.licdn.com/dms/image/v2/D4D03AQG_E7h6m0JaGw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728001329382?e=1736380800&v=beta&t=oURKUzVXZE9nYxZ1IDywvsFtKNAgOkMknzGFDU8iDLo" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>Jio</strong> (member)<br />insat<br />- rev pwn <br /> - Blog: <a href="https://jihedkdiss.me/">jihedkdiss.me</a><br />- Github: <a href="https://github.com/jihedkdiss">jihedkdiss</a></td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://raw.githubusercontent.com/Hilmi-z/pics-for-project/refs/heads/main/azizos.png" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>7bouba</strong> (member)<br />ISET CHARGUIA<br />- crypto <br /> - linkedin: <a href="https://www.linkedin.com/in/aziz-benabdallah-9bb583277/">Aziz Benabdallah</a><br />- Github: <a href="https://github.com/azizos001">aziz</a></td>
-                    </tr>
-
-                    <tr>
-                        <td><img src="https://raw.githubusercontent.com/Hilmi-z/pics-for-project/refs/heads/main/243677050_1585958308418044_6938801003847756136_n.jpg" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>snow wy</strong> (member)<br />isetcom<br />- web rev <br /> - linkedin: <a href="https://www.linkedin.com/in/sami-jhin-ba4169294/">sn0-0wyy</a><br />- Github: <a href="https://github.com/sn0-0wyy">sn0-0wyy</a></td>
-                    </tr>
-                      <tr>
-                        <td><img src="https://media.discordapp.net/attachments/1291022767512227922/1308858753633746995/356818635_193519403441639_1777681304855438730_n.jpg?ex=673f7934&is=673e27b4&hm=a939aefc5d11f22cf40542389b4d309b48d2cc2f67aa19158302ae1a8c1b78ee&=&format=webp&width=437&height=437" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>cyry</strong> (member)<br />isi<br />- DFIR osint  rev <br /> - linkedin: <a href="https://www.linkedin.com/in/cyrine-massoud/">cyry</a><br />- Github: <a href="https://github.com/cyryy">cyryy</a></td>
-                    </tr>
-                    <tr>
-                         <td><img src="https://avatars.githubusercontent.com/u/36628119?v=4" class="profile-image" alt="profile-image" /></td>
-                        <td><strong>Taher</strong> (member)<br />isamm<br />- Game-PWN WEB<br /> - linkedin: <a href="https://www.linkedin.com/in/taher-ouerfelli-828365220/">Taher-Ouerfelli</a><br />- Github: <a href="https://github.com/TaherOuerfelli">Taher</a></td>
-                    
-                    </tr>
-                    
-                </tbody>
-            </table>
+            <div class="members-grid">
+                <div class="member">
+                    <img src="https://avatars.githubusercontent.com/u/124378926?v=4" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>XDU0</strong> (co-founder)<br />
+                        ISET CHARGUIA<br />
+                        - DFIR hardware<br />
+                        - Github: <a href="http://github.com/Hilmi-z">XDU0</a><br />
+                        - Blog: <a href="https://hilmi-z.github.io/">XDU0.me</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://i.pinimg.com/originals/e2/3c/67/e23c67c1c2858dfaebe0a6383fd1d699.gif" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>Blade</strong> (co-founder)<br />
+                        ISET CHARGUIA<br />
+                        - DFIR OSINT hardware<br />
+                        - Blog: <a href="https://hatem.h4ck.me/">hatem.h4ck.me</a><br />
+                        - Github: <a href="https://github.com/unholy-blade">unholy-blade</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://avatars.githubusercontent.com/u/69780128?v=4" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>square</strong> (member)<br />
+                        fac?<br />
+                        - web rev <br />
+                        - Blog: <a href="https://squar3.site/">squar3.site</a><br />
+                        - Github: <a href="https://github.com/FatSquare">FatSquare</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQG_E7h6m0JaGw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728001329382?e=1736380800&v=beta&t=oURKUzVXZE9nYxZ1IDywvsFtKNAgOkMknzGFDU8iDLo" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>Jio</strong> (member)<br />
+                        insat<br />
+                        - rev pwn <br />
+                        - Blog: <a href="https://jihedkdiss.me/">jihedkdiss.me</a><br />
+                        - Github: <a href="https://github.com/jihedkdiss">jihedkdiss</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://raw.githubusercontent.com/Hilmi-z/pics-for-project/refs/heads/main/azizos.png" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>7bouba</strong> (member)<br />
+                        ISET CHARGUIA<br />
+                        - crypto <br />
+                        - linkedin: <a href="https://www.linkedin.com/in/aziz-benabdallah-9bb583277/">Aziz Benabdallah</a><br />
+                        - Github: <a href="https://github.com/azizos001">aziz</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://raw.githubusercontent.com/Hilmi-z/pics-for-project/refs/heads/main/243677050_1585958308418044_6938801003847756136_n.jpg" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>snow wy</strong> (member)<br />
+                        isetcom<br />
+                        - web rev <br />
+                        - linkedin: <a href="https://www.linkedin.com/in/sami-jhin-ba4169294/">sn0-0wyy</a><br />
+                        - Github: <a href="https://github.com/sn0-0wyy">sn0-0wyy</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://media.discordapp.net/attachments/1291022767512227922/1308858753633746995/356818635_193519403441639_1777681304855438730_n.jpg?ex=673f7934&is=673e27b4&hm=a939aefc5d11f22cf40542389b4d309b48d2cc2f67aa19158302ae1a8c1b78ee&=&format=webp&width=437&height=437" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>cyry</strong> (member)<br />
+                        isi<br />
+                        - DFIR osint  rev <br />
+                        - linkedin: <a href="https://www.linkedin.com/in/cyrine-massoud/">cyry</a><br />
+                        - Github: <a href="https://github.com/cyryy">cyryy</a>
+                    </div>
+                </div>
+                <div class="member">
+                    <img src="https://avatars.githubusercontent.com/u/36628119?v=4" class="profile-image" alt="profile-image" />
+                    <div class="member-info">
+                        <strong>Taher</strong> (member)<br />
+                        isamm<br />
+                        - Game-PWN WEB<br />
+                        - linkedin: <a href="https://www.linkedin.com/in/taher-ouerfelli-828365220/">Taher-Ouerfelli</a><br />
+                        - Github: <a href="https://github.com/TaherOuerfelli">Taher</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="about" class="page">
-            <br />
-            <h2>About</h2><br />
+            <h2>About</h2>
             <p>Phreaks is a cybersecurity team based in Tunisia. You know, Phreaks are the OG hackers who sweet-talked phone lines into free calls, bending signals and breaking rules before hacking even hit the digital scene!</p><br />
             <p>We actively participate in online and on-site CTF competitions. We're a group of cybersecurity enthusiasts with interests in areas like DFIR, web security, cryptography, IoT security, and more.</p>
         </div>
@@ -355,40 +652,53 @@ body::-webkit-scrollbar-track {
 function showMainPage() {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('container').style.display = 'flex';
-    showPage('about'); 
+    
+    const menu = document.getElementById('menu-items');
+    menu.classList.remove('show');
+    
+    showPage('about');
 }
 
+function showPage(pageId) {
+    // First hide all pages
+    var pages = document.querySelectorAll('.page');
+    pages.forEach(function(page) {
+        page.classList.remove('visible');
+        page.style.display = 'none';
+    });
 
-        
-        function showPage(pageId) {
-            var pages = document.querySelectorAll('.page');
-            pages.forEach(function(page) {
-                page.classList.remove('visible');
-            });
-            document.getElementById(pageId).classList.add('visible');
-
-        
-            if (window.innerWidth <= 600) {
-                toggleMenu(); 
-            }
-        }
-
-  
-        function toggleMenu() {
-            const menu = document.getElementById('menu-items');
-            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; 
-        }
-
-       
-        function showHome() {
-            document.getElementById('intro').style.display = 'flex';
-            document.getElementById('container').style.display = 'none';
-
+    // Show the selected page
+    const selectedPage = document.getElementById(pageId);
+    selectedPage.classList.add('visible');
     
-            if (window.innerWidth <= 600) {
-                toggleMenu(); 
-            }
-        }
+    // Special handling for members page
+    if (pageId === 'members') {
+        selectedPage.style.display = 'flex';
+    } else {
+        selectedPage.style.display = 'block';
+    }
+
+    // Handle mobile menu
+    if (window.innerWidth <= 600) {
+        const menu = document.getElementById('menu-items');
+        menu.classList.remove('show');
+    }
+}
+
+function toggleMenu() {
+    const menu = document.getElementById('menu-items');
+    menu.classList.toggle('show');
+}
+
+function showHome() {
+    document.getElementById('intro').style.display = 'flex';
+    document.getElementById('container').style.display = 'none';
+
+    if (window.innerWidth <= 600) {
+        const menu = document.getElementById('menu-items');
+        menu.classList.remove('show');
+    }
+}
     </script>
 </body>
 
